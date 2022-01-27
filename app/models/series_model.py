@@ -42,3 +42,15 @@ class Series(DatabaseConnector):
         cls.commit_and_close()
 
         return series
+    
+    @classmethod
+    def read_specific_serie(cls, id: int):
+        cls.get_conn_cur()
+
+        query = "SELECT * FROM ka_series WHERE id= %s"
+
+        cls.cur.execute(query, str(id))
+        specific_serie = cls.cur.fetchone()
+        
+        cls.commit_and_close()
+        return specific_serie

@@ -24,3 +24,10 @@ def add_new_serie():
     new_serie = dict(zip(KEYNAMES, added_serie))
 
     return jsonify(new_serie), HTTPStatus.CREATED
+
+def get_specific_serie(id: int):
+    serie = Series.read_specific_serie(id)
+
+    specific_serie = dict(zip(KEYNAMES, serie))
+
+    return jsonify(specific_serie), HTTPStatus.OK
