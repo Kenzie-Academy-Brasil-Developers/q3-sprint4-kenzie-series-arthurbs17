@@ -26,8 +26,12 @@ def add_new_serie():
     return jsonify(new_serie), HTTPStatus.CREATED
 
 def get_specific_serie(id: int):
-    serie = Series.read_specific_serie(id)
-
-    specific_serie = dict(zip(KEYNAMES, serie))
-
+    
+    try:
+        serie = Series.read_specific_serie(id)
+        specific_serie = dict(zip(KEYNAMES, serie))
+        
+    except TypeError:
+        return ({}), HTTPStatus.NOT_FOUND
+    
     return jsonify(specific_serie), HTTPStatus.OK

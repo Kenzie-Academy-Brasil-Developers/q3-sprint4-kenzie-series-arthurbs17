@@ -2,10 +2,10 @@ from app.services.database_service import DatabaseConnector
 
 class Series(DatabaseConnector):
     def __init__(self, *args, **kwargs) -> None:
-        self.serie = kwargs["serie"]
+        self.serie = kwargs["serie"].title()
         self.seasons = kwargs["seasons"]
         self.released_date = kwargs["released_date"]
-        self.genre = kwargs["genre"]
+        self.genre = kwargs["genre"].title()
         self.imdb_rating = kwargs["imdb_rating"]
 
     def to_add_serie(self):
